@@ -1,4 +1,3 @@
-import React from 'react';
 import firebase from 'firebase';
 
 const initializeFirebase = () => {
@@ -15,14 +14,14 @@ const initializeFirebase = () => {
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
 }
+initializeFirebase();
+
 
 export const uploadFileToFirebase = (image) => {
-  initializeFirebase();
   const storage = firebase.storage();
   const storageRef = storage.ref();
-  const petImageRef = storageRef.child('images/9038453845903845/' + image.target.files[0].name);
-  debugger;
-  petImageRef.put(image.target.files[0]).then(function(snapshot) {
-    console.log('Uploaded a blob or file!');
+  const petImageRef = storageRef.child('images/9038453845903845/' + image.name);
+  petImageRef.put(image).then(function(snapshot) {
+    console.log('Uploaded a blob or file!' + snapshot);
 });
 }
